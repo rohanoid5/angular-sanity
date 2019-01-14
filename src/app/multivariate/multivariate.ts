@@ -1,30 +1,6 @@
 import { Component } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
 
-let schema = [
-  {
-    name: 'Country',
-    type: 'string'
-  },
-  {
-    name: 'Time',
-    type: 'date',
-    format: '%-m/%-d/%Y'
-  },
-  {
-    name: 'Sales',
-    type: 'number'
-  },
-  {
-    name: 'Quantity',
-    type: 'number'
-  },
-  {
-    name: 'Shipping Cost',
-    type: 'number'
-  }
-];
-
 @Component({
   selector: 'multivariate',
   templateUrl: './multivariate.html'
@@ -34,7 +10,6 @@ export class MultiVariate {
   type: string;
   width: string;
   height: string;
-  showChart = false;
   constructor() {
     console.log('timeseries called');
     this.type = 'timeseries';
@@ -51,14 +26,15 @@ export class MultiVariate {
   fetchData() {
     var jsonify = res => res.json();
     var dataFetch = fetch(
-      'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-multi-variate/data.json'
+      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-two-variable-measures-data.json'
     ).then(jsonify);
     var schemaFetch = fetch(
-      'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-single-series/schema.json'
+      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-two-variable-measures-schema.json'
     ).then(jsonify);
 
     Promise.all([dataFetch, schemaFetch]).then(res => {
       const data = res[0];
+      const schema = res[1];
       const fusionTable = new FusionCharts.DataStore().createDataTable(
         data,
         schema
@@ -74,7 +50,6 @@ export class MultiVariate {
       this.dataSource.caption = {
         text: 'Online Sales of a SuperStore in the US'
       };
-      this.showChart = true;
     });
   }
 }

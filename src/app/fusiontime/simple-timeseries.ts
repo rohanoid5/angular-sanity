@@ -2,17 +2,15 @@ import { Component } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
 
 @Component({
-  selector: 'fusiontime',
-  templateUrl: './fusiontime.html'
+  selector: 'simple-timeseries',
+  templateUrl: './simple-timeseries.html'
 })
-export class FusionTime {
+export class SimpleTimeseries {
   dataSource: any;
   type: string;
   width: string;
   height: string;
-  showChart = false;
   constructor() {
-    console.log('timeseries called');
     this.type = 'timeseries';
     this.width = '600';
     this.height = '400';
@@ -27,10 +25,10 @@ export class FusionTime {
   fetchData() {
     var jsonify = res => res.json();
     var dataFetch = fetch(
-      'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-single-series/data.json'
+      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/line-chart-with-time-axis-data.json'
     ).then(jsonify);
     var schemaFetch = fetch(
-      'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-single-series/schema.json'
+      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/line-chart-with-time-axis-schema.json'
     ).then(jsonify);
 
     Promise.all([dataFetch, schemaFetch]).then(res => {
@@ -51,8 +49,6 @@ export class FusionTime {
       this.dataSource.caption = {
         text: 'Online Sales of a SuperStore in the US'
       };
-
-      this.showChart = true;
     });
   }
 }

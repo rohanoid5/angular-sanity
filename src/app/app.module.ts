@@ -13,14 +13,14 @@ import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
 
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-import { FusionTime } from './fusiontime/fusiontime';
+import { SimpleTimeseries } from './fusiontime/simple-timeseries';
 import { MultiVariate } from './multivariate/multivariate';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries, FusionTheme);
 
 @NgModule({
-  declarations: [AppComponent, FusionTime, MultiVariate],
+  declarations: [AppComponent, SimpleTimeseries, MultiVariate],
   imports: [BrowserModule, FusionChartsModule],
   providers: [],
   bootstrap: [AppComponent]
