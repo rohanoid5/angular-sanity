@@ -13,7 +13,7 @@ import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
 
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-import { SimpleTimeseries } from './fusiontime/simple-timeseries';
+import { SimpleTimeseries } from './simple-timeseries/simple-timeseries';
 import { MultiVariate } from './multivariate/multivariate';
 
 // Pass the fusioncharts library and chart modules
